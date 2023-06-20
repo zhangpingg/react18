@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// React17
+// const root = document.getElementById('root')!;  // DOM节点
+// ReactDOM.render(<App />, root);
+
+// React18
+// 可以为一个 App 创建多个根节点
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

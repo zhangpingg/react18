@@ -1,10 +1,9 @@
-import React from 'react'
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div style={{paddingLeft:'10px'}}>
-      <Link to="/pageA">pageA</Link><br />
+      <Link to="/batchUpdate">批量更新</Link><br />
     </div>
   )
 }
