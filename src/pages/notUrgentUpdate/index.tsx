@@ -5,7 +5,8 @@ const NotUrgentUpdate = () => {
   const [val1, setVal1] = useState();
   const [val2, setVal2] = useState();
 
-  const changeValue = (e: any) => {
+  /** change-input输入框 */
+  const changeInput = (e: any) => {
     const val = e.target.value;
     setVal1(val);             // 紧急更新
     startTransition(() => {   // 不紧急更新
@@ -15,7 +16,7 @@ const NotUrgentUpdate = () => {
 
   return (
     <div>
-      <Input value={val1} onChange={changeValue} />
+      <Input value={val1} onChange={changeInput} />
       <p>紧急更新：{val1}</p>
       <p>非紧急更新：</p>
       <div>
