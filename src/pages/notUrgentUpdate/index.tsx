@@ -7,10 +7,10 @@ const NotUrgentUpdate = () => {
 
   const changeValue = (e: any) => {
     const val = e.target.value;
+    setVal1(val);             // 紧急更新
     startTransition(() => {   // 不紧急更新
       setVal2(val);
     }); 
-    setVal1(val);             // 紧急更新
   };
 
   return (
