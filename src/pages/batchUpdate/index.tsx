@@ -8,26 +8,31 @@ const BatchUpdate = () => {
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
 
-  // 1) React事件函数（批量更新）
+  // 1) react中的钩子函数（批量更新）
+  useEffect(() => {
+    setCount1(count => count + 1);
+    setCount2(count => count + 1);
+  }, []);
+  // 2) React事件函数（批量更新）
   const fn1 = () => {
     setCount1(count1 + 1);
     setCount2(count2 + 1);
   }
-  // 2) setTimeout（批量更新）
+  // 3) setTimeout（批量更新）
   const fn2 = () => {
     setTimeout(() => {
       setCount1(count1 + 1);
       setCount2(count2 + 1);
     });
   }
-  // 3) promise（批量更新）
+  // 4) promise（批量更新）
   const fn3 = () => {
     Promise.resolve().then(() => {
       setCount1(count1 + 1);
       setCount2(count2 + 1);
     });
   }
-  // 4) 原生js事件（批量更新）
+  // 5) 原生js事件（批量更新）
   useEffect(() => {
     document.getElementById('btn')?.addEventListener('click', () => {
       setCount1(count => count + 1);
