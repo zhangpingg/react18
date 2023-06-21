@@ -6,11 +6,14 @@ import {
   useDeferredValue,
 } from 'react';
 import _ from 'lodash';
+import { Input } from 'antd';
+import './style.css';
 
-const mockDataArray = new Array(10000).fill(1);
+const mockList = new Array(10000).fill(1);
 
 function ShowText(props: any) {
   const { query } = props;
+
   const text = 'abcdefg';
   let children;
   if (text.indexOf(query) >= 0 && query) {
@@ -29,10 +32,9 @@ function ShowText(props: any) {
 }
 
 function NewList(props: any) {
-  console.log('输入框改变了');
   return (
     <div>
-      {mockDataArray.map((item, index) => (
+      {mockList.map((item, index) => (
         <div key={index}>
           <ShowText query={props.query} />
         </div>
@@ -42,11 +44,14 @@ function NewList(props: any) {
 }
 
 const Index = () => {
-  const [val1, setVal1] = useState('');
+  const [val1, setVal1] = useState();
+  const [val2, setVal2] = useState();
+  const [val3, setVal3] = useState();
+  const [isPending, setIsPending] = useTransition();
   const [isTransition, setTransion] = useState(false);
   const [query, setSearchQuery] = useState('');
 
-  const [isPending, startTransition] = useTransition();
+  
 
   const SetSearchQueryDebounce = useMemo(
     () => _.debounce((val1: any) => setSearchQuery(val1), 1000),
@@ -57,20 +62,60 @@ const Index = () => {
   const changeInput = (e: any) => {
     const val = e.target.value;
     setVal1(val);                    // 紧急更新
-    if (isTransition) {
-      startTransition(() => {        // 不紧急更新
-        setSearchQuery(val);
-      });
-    } else {
-      // setSearchQuery(val);        // 紧急更新
-      SetSearchQueryDebounce(val);   // 防抖
-    }
+    startTransition(() => {          // 不紧急更新
+      setSearchQuery(val);
+      setVal2(val);
+    });
+    setIsPending(() => {
+      setVal3(val);
+    })
+    // if (isTransition) {
+    //   startTransition(() => {        // 不紧急更新
+    //     setSearchQuery(val);
+    //     setVal2(val);
+    //   });
+    // } else {
+    //   // setSearchQuery(val);        // 紧急更新
+    //   SetSearchQueryDebounce(val);   // 防抖
+    // }
   };
 
+  console.log(11, isPending)
+
   return (
-    <div>
-      <input value={val1} onChange={changeInput} placeholder="输入搜索内容"  />
-      <p>紧急更新：{val1}</p>
+    <div className='test'>
+      <Input value={val1} onChange={changeInput} placeholder="输入搜索内容" />
+      <div className='test-wrap'>
+        <div className='test-wrap-box'>
+          紧急更新：
+          <div>
+            {mockList.map((item, index) => (
+              <div key={index}>{val1}</div>
+            ))}
+          </div>
+        </div>
+        <div className='test-wrap-box'>
+          非紧急更新：
+          <div>
+            {mockList.map((item, index) => (
+              <div key={index}>{val2}</div>
+            ))}
+          </div>
+        </div>
+        <div className='test-wrap-box'>
+          非紧急更新：
+          <div>
+            {isPending
+              ? mockList.map((item, index) => (
+                <div key={index}>{val3}</div>
+              ))
+              : '正在更新中ing'
+            }
+          </div>
+        </div>
+      </div>
+
+
       <button onClick={() => setTransion(!isTransition)}>
         {isTransition ? 'transition' : 'noTransition'}
       </button>
