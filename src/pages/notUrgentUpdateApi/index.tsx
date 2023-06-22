@@ -9,7 +9,7 @@ import './style.css';
 
 const mockList = new Array(10000).fill(1);
 
-const Index = () => {
+const NotUrgentUpdateApi = () => {
   const [val1, setVal1] = useState();
   const [val2, setVal2] = useState();
   const [val3, setVal3] = useState();
@@ -29,10 +29,10 @@ const Index = () => {
   };
 
   return (
-    <div className='test'>
+    <div className='NUUA'>
       <Input value={val1} onChange={changeInput} placeholder="输入搜索内容" />
-      <div className='test-wrap'>
-        <div className='test-wrap-box'>
+      <div className='NUUA-wrap'>
+        <div className='NUUA-wrap-box'>
           紧急更新：
           <div>
             {mockList.map((item, index) => (
@@ -40,16 +40,16 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className='test-wrap-box'>
-          startTransition 非紧急更新：
+        <div className='NUUA-wrap-box'>
+          startTransition 不紧急更新：
           <div>
             {mockList.map((item, index) => (
               <div key={index}>{val2}</div>
             ))}
           </div>
         </div>
-        <div className='test-wrap-box'>
-          useTransition 非紧急更新：
+        <div className='NUUA-wrap-box'>
+          useTransition 不紧急更新：
           <div>
             {!isPending
               ? mockList.map((item, index) => (
@@ -59,8 +59,8 @@ const Index = () => {
             }
           </div>
         </div>
-        <div className='test-wrap-box'>
-          useDeferredValue 非紧急更新：
+        <div className='NUUA-wrap-box'>
+          useDeferredValue 不紧急更新：
           <div>
             {mockList.map((item, index) => (
               <div key={index}>{val4}</div>
@@ -72,4 +72,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default NotUrgentUpdateApi;

@@ -2,7 +2,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/home';
 import Test from './pages/test';
 import BatchUpdate from './pages/batchUpdate';
-import NotUrgentUpdate from './pages/notUrgentUpdate';
+import NotUrgentUpdateApi from './pages/notUrgentUpdateApi';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
         <Route path="/batchUpdate" element={<BatchUpdate />} />
-        <Route path="/notUrgentUpdate" element={<NotUrgentUpdate />} />
+        <Route path="/notUrgentUpdateApi" element={<NotUrgentUpdateApi />} />
       </Routes>
     </Router>
   );

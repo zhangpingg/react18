@@ -1,12 +1,9 @@
-.test{
-  border: 1px solid #000;
-}
-.test-wrap{
+.NUUA-wrap{
   display: flex;
   padding-top: 10px;
 }
-.test-wrap-box{
-  width: 200px;
+.NUUA-wrap-box{
+  width: 250px;
   height: 200px;
   border: 1px solid #000;
   overflow-y: auto;
