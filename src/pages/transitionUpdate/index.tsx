@@ -9,7 +9,7 @@ import './style.css';
 
 const mockList = new Array(10000).fill(1);
 
-const NotUrgentUpdateApi = () => {
+const TransitionUpdate = () => {
   const [val1, setVal1] = useState();
   const [val2, setVal2] = useState();
   const [val3, setVal3] = useState();
@@ -72,4 +72,4 @@ const NotUrgentUpdateApi = () => {
   );
 };
 
-export default NotUrgentUpdateApi;
+export default TransitionUpdate;
