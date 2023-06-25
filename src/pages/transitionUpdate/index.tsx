@@ -51,11 +51,11 @@ const TransitionUpdate = () => {
         <div className='NUUA-wrap-box'>
           useTransition 不紧急更新：
           <div>
-            {!isPending
-              ? mockList.map((item, index) => (
+            {isPending
+              ? '正在更新中ing'
+              : mockList.map((item, index) => (
                 <div key={index}>{val3}</div>
               ))
-              : '正在更新中ing'
             }
           </div>
         </div>
